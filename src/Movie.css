@@ -39,12 +39,12 @@
      color: #2c2c2c;
 }
 
-.movie .movie__genres {
+.movie .genre {
      list-style: none;
      padding: 0;
      margin: 0;
      display: flex;
-     margin: 5px 0px;
+     margin: 15px 0px;
 }
 
 .movie__genres li,
@@ -53,4 +53,10 @@
 .movie .movie__time {
      margin-right: 10px;
      font-size: 14px;
+}
+
+.movie .movie__url {
+     text-decoration: none;
+     font-weight: bold;
+     color: #23a;
 }

@@ -24,7 +24,9 @@ function Movie({ title, summary, genres, year, rating, runtime, poster, url }) {
                          ))}
                     </ul>
                     <p className="movie__summary">{summary.slice(0, 180)}...</p>
-                    <a href={url}>Watch:{title}</a>
+                    <a className="movie__url" href={url}>
+                         Download:{title}
+                    </a>
                </div>
 
                <br />

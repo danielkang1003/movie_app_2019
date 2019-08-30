@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Movie from "./Movies";
+import ReactLoading from "react-loading";
 import "./App.css";
 
 class App extends React.Component {
@@ -39,6 +40,15 @@ class App extends React.Component {
                <section className="container">
                     {isLoading ? (
                          <div className="loader">
+                              <ReactLoading
+                                   type={"spinningBubbles"}
+                                   color={"#000"}
+                              />
+                              {/* if would like to change type,
+                                   select one of them and put it in type
+                                   balls, bars, bubbles, cubes, cylon, spin,
+                                   spinningbubbles, spokes
+                              */}
                               <span className="loader__text">Loading...</span>
                          </div>
                     ) : (
