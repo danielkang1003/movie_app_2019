@@ -1,28 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Movie.css";
-function Movie({
-     id,
-     title,
-     summary,
-     genres,
-     year,
-     rating,
-     runtime,
-     poster,
-     url
-}) {
+function Movie({ title, summary, genres, year, rating, runtime, poster, url }) {
+     let h = Math.floor(runtime / 60);
+     let m = runtime % 60;
+     h = h < 10 ? "0" + h : h;
+     m = m < 10 ? "0" + m : m;
      return (
-          <div class="movie">
-               <h2>Movie</h2>
+          <div className="movie">
                <img src={poster} alt={title} title={title} />
-               <div class="movie__data">
-                    <h3 class="movie__title">Title:{title}</h3>
-                    <h5 class="movie__year">year: {year}</h5>
-                    <h5 class="movie__genre">genre: {genres}</h5>
-                    <h5 class="movie__rate">rate: {rating}</h5>
-                    <h5 class="movie__time">time: {runtime}</h5>
-                    <p class="movie__summary">{summary}</p>
+               <div className="movie__data">
+                    <h3 className="movie__title">{title}</h3>
+                    <h5 className="movie__year">year: {year}</h5>
+                    <h5 className="movie__rate">rate: {rating} / 10.0</h5>
+                    <h5 className="movie__time">
+                         time: {h}hour {m} min
+                    </h5>
+                    <ul className="genre">
+                         {genres.map((genre, index) => (
+                              <li key={index} className="genres__genre">
+                                   {genre}
+                              </li>
+                         ))}
+                    </ul>
+                    <p className="movie__summary">{summary.slice(0, 180)}...</p>
                     <a href={url}>Watch:{title}</a>
                </div>
 
@@ -35,7 +36,7 @@ Movie.propTypes = {
      id: PropTypes.number.isRequired,
      title: PropTypes.string.isRequired,
      summary: PropTypes.string.isRequired,
-     genres: PropTypes.array.isRequired,
+     genres: PropTypes.arrayOf(PropTypes.string).isRequired,
      year: PropTypes.number.isRequired,
      rating: PropTypes.number.isRequired,
      runtime: PropTypes.number.isRequired,

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Movie from "./Movies";
+import "./App.css";
 
 class App extends React.Component {
      state = {
@@ -14,7 +15,8 @@ class App extends React.Component {
                     data: { movies }
                }
           } = await axios.get(
-               "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+               "https://yts-proxy.now.sh/list_movies.json"
+               //if want to sort, add after movies.json: ?sort_by=rating
           );
           // console.log(movies);
           this.setState({ movies, isLoading: false });
@@ -34,13 +36,13 @@ class App extends React.Component {
           const { isLoading, movies } = this.state;
           console.log(movies);
           return (
-               <section class="container">
+               <section className="container">
                     {isLoading ? (
-                         <div class="loader">
-                              <span class="loader__text">Loading...</span>
+                         <div className="loader">
+                              <span className="loader__text">Loading...</span>
                          </div>
                     ) : (
-                         <div class="movies">
+                         <div className="movies">
                               {movies.map(movie => (
                                    <Movie
                                         key={movie.id}
@@ -53,6 +55,7 @@ class App extends React.Component {
                                         runtime={movie.runtime}
                                         poster={movie.medium_cover_image}
                                         url={movie.torrents[0].url}
+                                        //url={movie.url}
                                    />
                               ))}
                          </div>
